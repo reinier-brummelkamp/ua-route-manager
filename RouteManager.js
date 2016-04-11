@@ -5,10 +5,10 @@ var RouteManager = (function () {
     // Instance stores a reference to the Singleton
     var route_manager_instance;
 
-    function route_manager_init(app) {
+    function route_manager_init(appContainer, elementFactory) {
         // Private variables
-        var _appContainer = app.AppContainer();
-        var _elementFactory = app.ElementFactory();
+        var _appContainer = appContainer;
+        var _elementFactory = elementFactory;
 
         var _loadAppHeaderBoundFx;
         var _loadAppLeftFrameBoundFx;
@@ -88,6 +88,7 @@ var RouteManager = (function () {
             pageJs: page,
 
             // Public methods 
+
             loadAppHeader: function (elementName) {
                 if (_loadAppHeaderBoundFx)
                     return _loadAppHeaderBoundFx(elementName);
@@ -150,9 +151,9 @@ var RouteManager = (function () {
 
         // Get the Singleton instance if one exists
         // or create one if it doesn't  
-        getInstance: function (app) {
+        getInstance: function (appContainer, elementFactory) {
             if (!route_manager_instance)
-                route_manager_instance = route_manager_init(app);
+                route_manager_instance = route_manager_init(appContainer, elementFactory);
 
             return route_manager_instance;
         }
