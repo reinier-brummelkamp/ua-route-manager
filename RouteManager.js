@@ -85,10 +85,9 @@ var RouteManager = (function () {
 
         return {
             // Public variables
-            registerRoute: page,
+            pageJs: page,
 
             // Public methods 
-
             loadAppHeader: function (elementName) {
                 if (_loadAppHeaderBoundFx)
                     return _loadAppHeaderBoundFx(elementName);
@@ -133,6 +132,14 @@ var RouteManager = (function () {
                     _loadAppFooterBoundFx = _loadAppFooter.bind(app);
                     return _loadAppFooterBoundFx(elementName);
                 }
+            },
+
+            registerRoute: function (url, callback) {
+                page(url, callback);
+            },
+
+            navigateTo: function (url) {
+                page(url);
             }
 
         };
